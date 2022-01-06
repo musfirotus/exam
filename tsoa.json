@@ -1,0 +1,69 @@
+{
+  "entryFile": "./src/index.ts",
+  "controllerPathGlobs": ["./src/application/controllers/**/*.controller.ts"],
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "spec": {
+    "outputDirectory": ".",
+    "specVersion": 3,
+    "specMerging": "recursive",
+    "basePath": "/api",
+    "spec": {
+      "paths": {
+        "/v1/fakultas/upload-pedoman": {
+          "post": {
+            "description": "Endpoint untuk upload pedoman pemeriksaan matakuliah",
+            "responses": {
+              "200": {
+                "description": "Ok",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "json",
+                      "example": {
+                        "data": {
+                          "sks": 4,
+                          "masa": "20202",
+                          "jumlah_periksa": 1,
+                          "persen_na1": 50,
+                          "persen_na2": 50,
+                          "status_praktek_mandiri": true,
+                          "kode_jenis_formula": "12",
+                          "kode_program_studi": "279",
+                          "kode_mtk": "PANG422",
+                          "nama_matakuliah": "Prak. Bio Kimia",
+                          "folder_pedoman": "folder/nama",
+                          "file_pedoman": "nama_file.pdf"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "consumes": [
+              "multipart/form-data"
+            ],
+            "parameters": [
+              {
+                "in": "formData",
+                "name": "kode_matakuliah",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "in": "formData",
+                "name": "pedoman",
+                "required": true,
+                "type": "file"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "routes": {
+    "basePath": "/api",
+    "routesDir": "./src/application/controllers"
+  }
+}
